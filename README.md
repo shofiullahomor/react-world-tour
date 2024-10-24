@@ -12,11 +12,13 @@ There are some Information about 250 countries.
 8. Arm Coat
 
 <h1>Functionality </h1>
-1- Details Button
+<ul>
+ <li> Details Button</li> </br>
     clicking on details button a modal will open on the screen with some information is provided about the country.
-2- Mark as read Button
+<li> Mark as read Button </li> </br>
     clicking in mark as read button the name of the country will display above 
-3- visited button 
+<li> visited button </li> </br>
     clicking on visited button background color will change 
-4- Add Flag button
+<li> Add Flag button </li></br>
     clicking Add Flag button the flag of the coungry will display above the all country section.
+</ul>
