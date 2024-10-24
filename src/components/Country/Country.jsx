@@ -1,16 +1,62 @@
+import { useState } from "react";
+// import { useState } from "react";
 import "./Country.css";
-const Country = ({ country }) => {
-  console.log(country);
-  const { name, capital, flags } = country;
+const Country = ({ country, handleVisitedCountry, handleVisitedFlags }) => {
+  const { name, capital, flags, population, currencies, coatOfArms } = country;
+  const [visited, setVisited] = useState(false);
+  const [details, setDetails] = useState(false);
+
+  const handleVisited = () => {
+    setVisited(!visited);
+  };
+
   return (
-    <div className="country">
+    <div className={`country ${visited && "visited"}`}>
       <h3 style={{ color: "black" }}>
         Name: <span style={{ color: "green" }}>{name?.common}</span>
       </h3>
-      <h3>
+      <h4>
         Capital: <span style={{ color: "green" }}> {capital}</span>
-      </h3>
-      <img src={flags.png} alt="" />
+      </h4>
+      <h4>Population: {population}</h4>
+
+      <img className="img" src={flags.png} alt="" />
+      <button className="btn btn-primary " onClick={handleVisited}>
+        {visited ? "visited" : "Going"}
+      </button>
+      {visited ? "I have visited this country" : "I want to go"}
+      <br />
+      <button onClick={() => handleVisitedCountry(country)}>
+        Mark visited
+      </button>
+      <button onClick={() => handleVisitedFlags(country.flags.png)}>
+        Add Flag
+      </button>
+      <button onClick={() => setDetails(true)}>Details</button>
+
+      {details && (
+        <div
+          className="modal-overlay"
+          className="modal-overlay"
+          onClick={() => setDetails(false)}
+        >
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <h2>Name: {name?.common}</h2>
+            <h4>Capital: {capital}</h4>
+            <h4>population: {population}</h4>
+            <img className="img" src={flags.png} alt="" />
+            <h4>coatOfArms</h4>
+            <img className="img" src={coatOfArms.png} alt="" />
+
+            <button
+              className="close-modal-btn"
+              onClick={() => setDetails(false)}
+            >
+              close details
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
